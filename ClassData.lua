@@ -1,9 +1,16 @@
 local setmetatable <const> = setmetatable
+local concat <const> = table.concat
 
 local ClassData <const> = { __type = "ClassData"}
 ClassData.__index = ClassData
 
 _ENV = ClassData
+
+function ClassData:toString()
+	local strTbl <const> = { "{ className = ",self.className,"; classVars = ",concat(self.vars,","),"; parentClass = ",self.parentClass,"; parentVars = ",concat(self.parentVars,","),"; }" }
+	return concat(strTbl)
+
+end
 
 function ClassData:setClassName(tbl)
 	self.className = tbl[1] or ""
@@ -26,7 +33,7 @@ function ClassData:setParentVars(tbl)
 end
 
 function ClassData:new()
-	return setmetatable({},self)
+	return setmetatable({className = "", vars = {}, parentVars = {}, parentClass = ""},self)
 end
 
 return ClassData
