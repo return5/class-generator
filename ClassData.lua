@@ -26,9 +26,9 @@ end
 
 function ClassData:setParentClass(tbl)
 	local parentClass <const> = tbl[1] or ""
-	local path <const> = match(parentClass,"^(.+%/)") or ""
+	local path <const> = match(parentClass,"^(.+[/\\])") or ""
 	self.parentPath = gsub(path,"[\\/]+",".")
-	self.parentClass = match(parentClass,"/?([^/]*)$")
+	self.parentClass = match(parentClass,"[\\/]?([^/\\]*)$")
 	return self
 end
 
