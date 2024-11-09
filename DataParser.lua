@@ -11,7 +11,9 @@ local setters <const> = {
 	p = ClassData.setParentClass,
 	v = ClassData.setVars,
 	c = ClassData.setClassName,
-	s = ClassData.setParentVars
+	s = ClassData.setParentVars,
+	m = ClassData.setClassFunctions,
+	f = ClassData.setStaticFunctions
 }
 
 function DataParser.parseData(argsTbl)

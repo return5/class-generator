@@ -9,9 +9,20 @@ ClassData.__index = ClassData
 
 _ENV = ClassData
 
+
 function ClassData:toString()
 	local strTbl <const> = { "{ className = ",self.className,"; classVars = ",concat(self.vars,","),"; parentClass = ",self.parentClass,"; parentVars = ",concat(self.parentVars,","),"; }" }
 	return concat(strTbl)
+end
+
+function ClassData:setStaticFunctions(tbl)
+	self.staticFunctions = tbl or Globals.emptyTbl
+	return self
+end
+
+function ClassData:setClassFunctions(tbl)
+	self.classFunctions = tbl or Globals.emptyTbl
+	return self
 end
 
 function ClassData:setClassName(tbl)
@@ -38,7 +49,7 @@ function ClassData:setParentVars(tbl)
 end
 
 function ClassData:new()
-	return setmetatable({className = "", vars = Globals.emptyTbl, parentVars = Globals.emptyTbl, parentClass = ""},self)
+	return setmetatable({className = "", vars = Globals.emptyTbl, parentVars = Globals.emptyTbl, parentClass = "",staticFunctions = Globals.emptyTbl,classFunctions = Globals.emptyTbl},self)
 end
 
 return ClassData

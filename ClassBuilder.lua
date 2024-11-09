@@ -95,12 +95,33 @@ local function generateConstructor(classData)
 	return generateConstructorWithParent(classData)
 end
 
+local function generateFunction(className,functionName,strTbl)
+	strTbl[#strTbl + 1] = "function "
+	strTbl[#strTbl + 1] = className
+	strTbl[#strTbl + 1] = functionName
+	strTbl[#strTbl + 1] ="()\n\nend\n\n"
+end
+
+local function generateFunctions(staticFunctions,classFunctions,className)
+	local staticName <const> = className .. "."
+	local methodName <const> = className .. ":"
+	local strTbl <const> = {}
+	for i=1,#staticFunctions,1 do
+		generateFunction(staticName,staticFunctions[i],strTbl)
+	end
+	for i=1,#classFunctions,1 do
+		generateFunction(methodName,classFunctions[i],strTbl)
+	end
+	return concat(strTbl)
+end
+
 function ClassBuilder.buildClass(classData)
 	local strTbl <const> = {
 		getParentClassStr(classData),
 		"local setmetatable <const> = setmetatable\n\nlocal ",classData.className," <const> = {__type = '",classData.className,"'}\n",classData.className,".__index = ",classData.className,"\n\n",
 		setParentClassMetatable(classData),
 		"_ENV = ",classData.className,"\n\n",
+		generateFunctions(classData.staticFunctions,classData.classFunctions,classData.className),
 		generateConstructor(classData),
 		"return ",classData.className,"\n"
 	}
