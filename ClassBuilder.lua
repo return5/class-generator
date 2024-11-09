@@ -1,3 +1,4 @@
+local Globals <const> = require('Globals')
 local setmetatable <const> = setmetatable
 local concat <const> = table.concat
 
@@ -28,11 +29,11 @@ end
 
 local function generateConstructorFunctionStart(className,vars1,vars2)
 	local strTbl <const> = {"function ",className,":new("}
-	if vars2 ~= {} then
+	if vars2 ~= Globals.emptyTbl then
 		addVarsToStrTbl(strTbl,vars2)
 	end
-	if vars1 ~= {} then
-		if vars2 ~= {} then strTbl[#strTbl + 1] = "," end
+	if vars1 ~= Globals.emptyTbl then
+		if vars2 ~= Globals.emptyTbl then strTbl[#strTbl + 1] = "," end
 		addVarsToStrTbl(strTbl,vars1)
 	end
 	strTbl[#strTbl + 1] = ")\n"
@@ -40,7 +41,7 @@ local function generateConstructorFunctionStart(className,vars1,vars2)
 end
 
 local function generateSetMetatableNoParent(vars)
-	if vars == {} then return "" end
+	if vars == Globals.emptyTbl then return "" end
 	local strTbl <const> = {vars[1], " = ",vars[1]}
 	for i=2,#vars,1 do
 		strTbl[#strTbl + 1] = ","
@@ -66,7 +67,7 @@ local function generateCallToParentNew(vars)
 end
 
 local function generateSetSelfVars(vars)
-	if vars == {} then return "\n" end
+	if vars == Globals.emptyTbl then return "" end
 	local strTbl <const> = {}
 	for i=1,#vars,1 do
 		strTbl[#strTbl + 1] = "\to."

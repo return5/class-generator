@@ -20,7 +20,7 @@ end
 function ArgReader.readArgs(args)
 	local argsTable <const> = {}
 	local argStr <const> = concat(args," ")
-	for flag, options in gmatch(argStr,"-(%S*)%s*(%S*)") do
+	for flag, options in gmatch(argStr,"-(%S*)%s*([^-%s]*)") do
 		loopOverOptions(flag,options,argsTable)
 	end
 	return argsTable

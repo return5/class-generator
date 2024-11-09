@@ -1,3 +1,4 @@
+local Globals <const> = require('Globals')
 local setmetatable <const> = setmetatable
 local concat <const> = table.concat
 
@@ -9,7 +10,6 @@ _ENV = ClassData
 function ClassData:toString()
 	local strTbl <const> = { "{ className = ",self.className,"; classVars = ",concat(self.vars,","),"; parentClass = ",self.parentClass,"; parentVars = ",concat(self.parentVars,","),"; }" }
 	return concat(strTbl)
-
 end
 
 function ClassData:setClassName(tbl)
@@ -18,7 +18,7 @@ function ClassData:setClassName(tbl)
 end
 
 function ClassData:setVars(tbl)
-	self.vars = tbl or {}
+	self.vars = tbl or Globals.emptyTbl
 	return self
 end
 
@@ -28,12 +28,12 @@ function ClassData:setParentClass(tbl)
 end
 
 function ClassData:setParentVars(tbl)
-	self.parentVars = tbl or {}
+	self.parentVars = tbl or Globals.emptyTbl
 	return self
 end
 
 function ClassData:new()
-	return setmetatable({className = "", vars = {}, parentVars = {}, parentClass = ""},self)
+	return setmetatable({className = "", vars = Globals.emptyTbl, parentVars = Globals.emptyTbl, parentClass = ""},self)
 end
 
 return ClassData
