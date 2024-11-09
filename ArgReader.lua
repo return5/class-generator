@@ -2,7 +2,7 @@ local setmetatable <const> = setmetatable
 local gmatch <const> = string.gmatch
 local concat <const> = table.concat
 
-local ArgReader <const> = {__type="ArgReader"}
+local ArgReader <const> = {__type = "ArgReader"}
 ArgReader.__index = ArgReader
 
 _ENV = ArgReader
