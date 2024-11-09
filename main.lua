@@ -1,5 +1,6 @@
 --[[
 	Class Generator. command line tool to generate skeleton of a lua class.className
+	Copyright (C) <2024> github/return5
 
 	This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, exclusively version 3 of the License.
 
