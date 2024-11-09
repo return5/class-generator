@@ -1,6 +1,7 @@
 local Globals <const> = require('Globals')
 local setmetatable <const> = setmetatable
 local concat <const> = table.concat
+local match <const> = string.match
 
 local ClassData <const> = { __type = "ClassData"}
 ClassData.__index = ClassData
@@ -23,7 +24,9 @@ function ClassData:setVars(tbl)
 end
 
 function ClassData:setParentClass(tbl)
-	self.parentClass = tbl[1] or ""
+	local parentClass <const> = tbl[1] or ""
+	self.parentPath = match(parentClass,"^(.+%/)") or ""
+	self.parentClass = match(parentClass,"/?([^/]*)$")
 	return self
 end
 
