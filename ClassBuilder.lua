@@ -9,7 +9,7 @@ _ENV = ClassBuilder
 
 local function getParentClassStr(classData)
 	if classData.parentClass == "" then return "" end
-	local strTbl <const> = {"local ",classData.parentClass," <const> = require('",classData.parentClass,"')\n"}
+	local strTbl <const> = {"local ",classData.parentClass," <const> = require('",classData.parentPath,classData.parentClass,"')\n"}
 	return concat(strTbl)
 end
 
