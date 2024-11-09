@@ -1,4 +1,3 @@
-
 local ArgReader <const> = require('ArgReader')
 local DataParser <const> = require('DataParser')
 local ClassBuilder <const> = require('ClassBuilder')
