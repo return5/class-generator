@@ -98,7 +98,7 @@ end
 function ClassBuilder.buildClass(classData)
 	local strTbl <const> = {
 		getParentClassStr(classData),
-		"local setmetatable <const> = setmetatable\n\nlocal",classData.className," <const> = {__type = '",classData.className,"'}\n",classData.className,".__index = ",classData.className,"\n\n",
+		"local setmetatable <const> = setmetatable\n\nlocal ",classData.className," <const> = {__type = '",classData.className,"'}\n",classData.className,".__index = ",classData.className,"\n\n",
 		setParentClassMetatable(classData),
 		"_ENV = ",classData.className,"\n\n",
 		generateConstructor(classData),

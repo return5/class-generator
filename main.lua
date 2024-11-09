@@ -7,7 +7,9 @@ local function main()
 	local argsTable <const> = ArgReader:new().readArgs(arg)
 	local classData <const> = DataParser:new().parseData(argsTable)
 	local class <const> = ClassBuilder:new().buildClass(classData)
-	io.write(class)
+	local file <const> = io.open(classData.className .. ".lua","w+")
+	file:write(class)
+	file:close()
 end
 
 main()
