@@ -1,5 +1,5 @@
 Lua Class Generator  
-command line tool which generates teh skeleton of a class in lua. saves class to a file inside of ./classes/
+command line tool which generates the skeleton of a class in lua. saves class to a file inside of ./classes/
 
 # options
 - -c [className] 
